@@ -6,8 +6,8 @@ import flixel.addons.effects.FlxTrail;
 
 class Player extends FlxSprite
 {
-	var gravity:Float = 600;
-	var vel:Float = 400;
+	public var gravity:Float = 600;
+	public var vel:Float = 400;
 
 	public var trail:FlxTrail;
 
@@ -28,16 +28,11 @@ class Player extends FlxSprite
 
 	function move()
 	{
-		var up = FlxG.keys.anyJustPressed([UP, W, SPACE]);
 		var left = FlxG.keys.anyPressed([A, LEFT]);
 		var right = FlxG.keys.anyPressed([D, RIGHT]);
 		var down = FlxG.keys.anyPressed([S, DOWN]);
 
-		if (up)
-		{
-			velocity.y = -gravity / 2;
-		}
-		else if (down)
+		if (down)
 		{
 			velocity.y = gravity;
 		}
