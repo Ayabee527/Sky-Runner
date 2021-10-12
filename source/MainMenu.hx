@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
@@ -12,7 +13,15 @@ class MainMenu extends FlxState
 	{
 		super.create();
 
-		add(text(['Sky', 'Runner'], FlxColor.CYAN, FlxColor.BLUE, 32, FlxG.height / 4));
+		var title = text(['Sky', 'Runner'], FlxColor.CYAN, FlxColor.BLUE, 48, FlxG.height / 5);
+		add(title);
+		var instrBg = new FlxSprite(0, 0).makeGraphic(178, 42, FlxColor.GRAY);
+		instrBg.alpha = 0.5;
+		instrBg.x = (FlxG.width / 2) - (instrBg.width / 2);
+		instrBg.y = (FlxG.height / 2) - (instrBg.height / 2) + 28;
+		add(instrBg);
+		var instr = text(['Press [SPACE]'], FlxColor.WHITE, FlxColor.GRAY, 16, FlxG.height / 2);
+		add(instr);
 	}
 
 	public static function text(texts:Array<String>, col:FlxColor = FlxColor.WHITE, shadCol:FlxColor = FlxColor.GRAY, size:Int = 24, initY:Float = 150)
@@ -40,6 +49,9 @@ class MainMenu extends FlxState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.SPACE)
+			FlxG.switchState(new PlayState());
+
 		super.update(elapsed);
 	}
 }
